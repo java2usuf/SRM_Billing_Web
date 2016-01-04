@@ -1,0 +1,127 @@
+body{
+	color: #111;
+    font-family: "Noto Serif",serif;
+    font-size: 16px;
+    line-height: 1.62em;
+}
+/********* nav starts here **********************/
+.nav{
+	font-family:Droid Sans;
+	text-transform: uppercase;
+}
+.nav a{
+	font-family:Droid Sans;
+}
+
+/* navbar */
+.navbar-default {
+    background-color: #f04949;
+    border-color: #f04949;
+}
+/* title */
+.navbar-default .navbar-brand {
+    color: #fff;
+    font-size:20px;
+    font-weight: bold;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #fff;
+}
+/* link */
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #fff;
+}
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #fff;
+    background-color: #f04949;
+}
+.navbar-default .navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:hover, 
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #fff;
+    background-color: #f04949;
+}
+.nav li a:first{margin-left: 20%;}
+.nav li a{margin-right: 45%;font-size:1.1em;}
+.nav li a i{margin-right: 10px;}
+/*** nav ends here ****/
+
+
+.form-inline .form-group{
+	margin-bottom: 20px;
+	float: right;
+}
+.title{
+	background-color: #34495e;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 5px;
+}
+
+input[type=number]{ -moz-appearance: textfield; }
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+
+
+body {
+  background: #dbe6dd;
+  text-align: center;
+  -webkit-transform: translateZ(0);
+}
+
+.btn-big-red {
+  background-color: #C63702;
+  background-image: linear-gradient(167deg, rgba(255, 255, 255, 0.1) 50%, rgba(0, 0, 0, 0) 55%), linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0));
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px #C63702 inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 8px 0 0 #AD3002, 0 8px 0 1px rgba(0, 0, 0, 0.4), 0 8px 8px 1px rgba(0, 0, 0, 0.5);
+  color: #FFF;
+  display: inline-block;
+  font-family: "Lucida Grande", Arial, sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  height: 61px;
+  letter-spacing: -1px;
+  line-height: 61px;
+  margin: 30px 0 10px;
+  position: relative;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  text-decoration: none !important;
+  top: 0;
+  width: 186px;
+  -moz-transition: 0.15s;
+  -o-transition: 0.15s;
+  -webkit-transition: 0.15s;
+  transition: 0.15s;
+}
+.btn-big-red:hover, .btn-big-red:focus {
+  background-color: #D13902;
+  box-shadow: 0 0 0 1px #C63702 inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 10px 0 0 #AD3002, 0 10px 0 1px rgba(0, 0, 0, 0.4), 0 10px 8px 1px rgba(0, 0, 0, 0.6);
+  top: -2px;
+}
+.btn-big-red:active {
+  box-shadow: 0 0 0 1px #AD3002 inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 0 0 1px rgba(0, 0, 0, 0.4);
+  -moz-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  -webkit-transform: translateY(10px);
+  transform: translateY(10px);
+}
+
+.button-error {
+            background: rgb(202, 60, 60); /* this is a maroon */
+        }
+
+ .button-secondary {
+            background: rgb(66, 184, 221); /* this is a light blue */
+        }

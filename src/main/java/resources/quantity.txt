@@ -1,0 +1,1 @@
+Total: #_PRICE_# * #_QUANTITY_# (Quantity) == #_FINALAMOUNT_#
