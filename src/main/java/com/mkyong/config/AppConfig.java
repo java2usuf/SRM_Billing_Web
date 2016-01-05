@@ -21,6 +21,8 @@ import org.springframework.web.servlet.view.JstlView;
 @Import({ SecurityConfig.class })
 public class AppConfig  extends WebMvcConfigurerAdapter{
 
+	
+	//test commit
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("login");
