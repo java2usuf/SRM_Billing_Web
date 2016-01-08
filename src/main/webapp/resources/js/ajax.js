@@ -1,3 +1,12 @@
+
+
+
+$(document).ready(function(){
+	$("#itemName_1").focus();
+});
+
+
+
 /**
  * Site : http:www.smarttutorials.net
  * @author muni
@@ -29,19 +38,19 @@ $(document).on('keydown', function ( e ) {
         console.log( "You pressed CTRL + 3" );
         $("#submitPage").click();
     }
-});
+   });
 
 //adds extra table rows
 var i=$('table tr').length;
-var nextPointer = 7;
+var nextPointer = 4;
 $(".addmore").on('click',function(){
 	html = '<tr>';
-	html += '<td><input class="case" tabindex="'+nextPointer++ +'" type="checkbox"/></td>';
-	html += '<td><input type="text"  tabindex="'+nextPointer++ +'" data-type="productCode" name="itemNo[]" id="itemNo_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
-	html += '<td><input type="text"  tabindex="'+nextPointer++ +'" data-type="productName" name="itemName[]" id="itemName_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
-	html += '<td><input type="text" onfocus="this.select();" tabindex="'+nextPointer++ +'" name="price[]" id="price_'+i+'" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
-	html += '<td><input type="text" onfocus="this.select();" tabindex="'+nextPointer++ +'" name="quantity[]" id="quantity_'+i+'" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
-	html += '<td><input type="text" disabled="disabled" onfocus="this.select();" tabindex="'+nextPointer++ +'" name="total[]" id="total_'+i+'" class="form-control totalLinePrice" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
+	html += '<td><input class="case" type="checkbox"/></td>';
+	html += '<td><input type="text"  disabled="disabled" data-type="productCode" name="itemNo[]" id="itemNo_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
+	html += '<td><input type="text" style="text-align: center;color: black;"  tabindex="'+nextPointer++ +'" data-type="productName" name="itemName[]" id="itemName_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
+	html += '<td><input type="text" onfocus="this.select();" tabindex="'+nextPointer++ +'" name="price[]" id="price_'+i+'" style="text-align:center; background-color:black; font-stretch: wider;color: red;font-size-adjust: none;font-style: oblique;" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
+	html += '<td><input type="text" onfocus="this.select();" tabindex="'+nextPointer++ +'" name="quantity[]" id="quantity_'+i+'" style="text-align:center;background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
+	html += '<td><input type="text" disabled="disabled" onfocus="this.select();" name="total[]" id="total_'+i+'" class="form-control totalLinePrice" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
 	html += '</tr>';
 	$('table').append(html);
 	i++;

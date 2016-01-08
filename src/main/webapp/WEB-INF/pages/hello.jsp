@@ -68,16 +68,16 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><input tabindex="1" type="checkbox" class="case"></td>
+								<td><input type="checkbox" class="case"></td>
 								<td>
-									<input tabindex="2" type="text" autocomplete="off" class="form-control autocomplete_txt" id="itemNo_1" name="itemNo[]" 
+									<input disabled="disabled" type="text" autocomplete="off" class="form-control autocomplete_txt" id="itemNo_1" name="itemNo[]" 
 									data-type="productCode">
 								</td>
-								<td><input tabindex="3" type="text" autocomplete="off" class="form-control autocomplete_txt" id="itemName_1" name="itemName[]" data-type="productName"></td>
-								<td><input tabindex="4" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" 
-								onkeypress="return IsNumeric(event);"  autocomplete="off" class="form-control changesNo" id="price_1" name="price[]"></td>
-								<td><input tabindex="5" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" onkeypress="return IsNumeric(event);" autocomplete="off" class="form-control changesNo" id="quantity_1" name="quantity[]"></td>
-								<td><input tabindex="6" disabled="disabled" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" onkeypress="return IsNumeric(event);" autocomplete="off" class="form-control totalLinePrice" id="total_1" name="total[]"></td>
+								<td><input tabindex="1" style="" type="text" autocomplete="off" class="form-control autocomplete_txt" id="itemName_1" name="itemName[]" data-type="productName"></td>
+								<td><input tabindex="2" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" 
+								style="text-align:center; background-color:black; font-stretch: wider;color: red;font-size-adjust: none;font-style: oblique;" onkeypress="return IsNumeric(event);"   autocomplete="off" class="form-control changesNo" id="price_1" name="price[]"></td>
+								<td><input tabindex="3" style="text-align:center;background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" onkeypress="return IsNumeric(event);" autocomplete="off" class="form-control changesNo" id="quantity_1" name="quantity[]"></td>
+								<td><input disabled="disabled" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" onkeypress="return IsNumeric(event);" autocomplete="off" class="form-control totalLinePrice" id="total_1" name="total[]"></td>
 							</tr>
 						</tbody>
 					</table>
