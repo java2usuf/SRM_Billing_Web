@@ -21,6 +21,8 @@ import org.springframework.web.servlet.view.JstlView;
 @Import({ SecurityConfig.class })
 public class AppConfig  extends WebMvcConfigurerAdapter{
 
+	
+	//test commit
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("login");
@@ -28,9 +30,10 @@ public class AppConfig  extends WebMvcConfigurerAdapter{
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("resources/css/**").addResourceLocations("resources/css/").setCachePeriod(0);
-        registry.addResourceHandler("resources/img/**").addResourceLocations("resources/img/").setCachePeriod(0);
-        registry.addResourceHandler("resources/js/**").addResourceLocations("resources/js/").setCachePeriod(0);
+        registry.addResourceHandler("resources/css/**").addResourceLocations("resources/css/").setCachePeriod(86400);
+        registry.addResourceHandler("resources/img/**").addResourceLocations("resources/img/").setCachePeriod(86400);
+        registry.addResourceHandler("resources/js/**").addResourceLocations("resources/js/").setCachePeriod(86400);
+        registry.addResourceHandler("resources/fonts/**").addResourceLocations("resources/fonts/").setCachePeriod(86400);
     }
 
     @Override

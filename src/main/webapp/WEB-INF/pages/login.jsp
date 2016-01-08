@@ -120,8 +120,8 @@
 				<p style="color: red">Powered by : SRM Technologies </p>
 			</div>
 		</div>
-	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-	<script src='http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js'></script>
-    <script src="<c:url value="/resources/js/jquery-1.11.2.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery-1.11.2.min.js"/>"></script>
+	<script src='<c:url value="/resources/js/jquery.validate.min.js"/>'></script>
+    <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 </body>
 </html>

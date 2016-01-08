@@ -78,6 +78,7 @@ body {
   background: #dbe6dd;
   text-align: center;
   -webkit-transform: translateZ(0);
+  border: 3px solid #ccc;
 }
 
 .btn-big-red {
@@ -106,6 +107,7 @@ body {
   transition: 0.15s;
 }
 .btn-big-red:hover, .btn-big-red:focus {
+  
   background-color: #D13902;
   box-shadow: 0 0 0 1px #C63702 inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 10px 0 0 #AD3002, 0 10px 0 1px rgba(0, 0, 0, 0.4), 0 10px 8px 1px rgba(0, 0, 0, 0.6);
   top: -2px;
@@ -125,3 +127,12 @@ body {
  .button-secondary {
             background: rgb(66, 184, 221); /* this is a light blue */
         }
+        
+input[type='text'], input[type='number']
+{
+border: 3px solid #DBE6DD;
+font-weight: 200;
+font-size: 15px;
+font-family: Verdana;
+}     
+        
