@@ -21,7 +21,19 @@
 		
 		var welcomeurl = '<c:url value="/login"/>';
 			function formSubmit() {
-				document.getElementById("logoutForm").submit();
+				
+				$.confirm({
+				    title: 'Logging-out !!!',
+				    content: 'Do you really want to Log-out ?',
+				    autoClose: 'cancel|3000',
+				    keyboardEnabled: true,
+				    confirm: function(){
+				    	document.getElementById("logoutForm").submit();
+				    },
+				    cancel:function(){
+				        //alert('canceled');
+				    }
+				});
 			}
 		</script>
 <!--  -->
@@ -75,7 +87,7 @@
 								</td>
 								<td><input tabindex="1" style="text-align: center;" type="text" autocomplete="off" class="form-control autocomplete_txt" id="itemName_1" name="itemName[]" data-type="productName"></td>
 								<td><input tabindex="2" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" 
-								style="text-align:center; background-color:black; font-stretch: wider;color: red;font-size-adjust: none;font-style: oblique;" onkeypress="return IsNumeric(event);"   autocomplete="off" class="form-control changesNo" id="price_1" name="price[]"></td>
+								style="text-align:center; background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" onkeypress="return IsNumeric(event);"   autocomplete="off" class="form-control changesNo" id="price_1" name="price[]"></td>
 								<td><input tabindex="3" style="text-align:center; background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" onkeypress="return IsNumeric(event);" autocomplete="off" class="form-control changesNo" id="quantity_1" name="quantity[]"></td>
 								<td><input disabled="disabled" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" onkeypress="return IsNumeric(event);" autocomplete="off" class="form-control totalLinePrice" id="total_1" name="total[]"></td>
 							</tr>
@@ -85,12 +97,29 @@
       		</div>
       	</div>
       	<div class="row" id="totalAmountDiv">
-      		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+      		<div class="col-lg-6">
       			<button type="button" class="btn btn-danger delete">- Delete</button>
       			<button type="button" id="addbut" class="btn btn-success addmore">+ Add More</button>
+      			</br></br>
+      			<label style="font: bolder; font-size: 100px;color: gray;font-size-adjust: none;font-stretch: wider; padding-top: 60px;">&#8377; &nbsp;</label>
+      			<label for="totalLabel" style="font: bolder; font-size: 100px;color: red;font-size-adjust: none;font-stretch: wider; padding-top: 60px;">0.0</label>
+      			</br>
+      			<label style="padding-left: 0px; font-size: 20px;color: gray;font-size-adjust: none;font-stretch: wider; padding-top: 60px;">TOTAL QTY :</label>
+      			<label for="totalQTY" style="font: bolder; font-size: 20px;color: blue;font-size-adjust: none;font-stretch: wider; padding-top: 60px;">0</label>
+      			</br>
       		</div>
-      		<div class="col-xs-12 col-sm-offset-4 col-md-offset-4 col-lg-offset-4 col-sm-5 col-md-5 col-lg-5">
+
+      		<div class="col-lg-offset-1 col-lg-5">
 				<fieldset class="form-inline">
+					<div class="form-group">
+						<label>Mobile Number: &nbsp;</label>
+						<div class="input-group">
+							<div class="input-group-addon">&#8377;</div>
+							<input type="number"  onpaste="return false;" ondrop="return false;" onkeypress="return IsNumeric(event);" name="mobile"
+							placeholder="Mobile" id="mobileNo" class="form-control">
+						</div>
+					</div>
+
 					<div class="form-group">
 						<label>Subtotal: &nbsp;</label>
 						<div class="input-group">
@@ -115,7 +144,7 @@
 							<div class="input-group-addon">%</div>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group" style="visibility: hidden;">
 						<label>Total: &nbsp;</label>
 						<div class="input-group">
 							<div class="input-group-addon">&#8377;</div>
@@ -123,16 +152,6 @@
 							 id="totalAftertax" class="form-control">
 						</div>
 					</div>
-					
-					<div class="form-group">
-						<label>Mobile Number: &nbsp;</label>
-						<div class="input-group">
-							<div class="input-group-addon">&#8377;</div>
-							<input type="number"  onpaste="return false;" ondrop="return false;" onkeypress="return IsNumeric(event);" name="mobile"
-							placeholder="Mobile" id="mobileNo" class="form-control">
-						</div>
-					</div>
-										
 				</fieldset>
 			
 			</div>
@@ -140,7 +159,7 @@
 					<a href="#" class="btn-big-red submitClass" id="submitPage" >Print Receipt</a>
 					<input type="hidden" class="alertClass">
 				</div>
-      	</div>
+      		</div>
     </div>			
 </c:if>
 </form>

@@ -1,6 +1,4 @@
 
-
-
 $(document).ready(function(){
 	$("#itemName_1").focus();
 });
@@ -28,8 +26,11 @@ $(function() {
             });
         });
 
+function changeText(){
+	$("label[for='totalLabel']").html($("#totalAftertax").val());
+}
+
 $(document).on('keydown', function ( e ) {
-    // You may replace `c` with whatever key you want
     if ( (e.metaKey || e.ctrlKey) && ( String.fromCharCode(e.which) === '1' || String.fromCharCode(e.which) === '1' ) ) {
         console.log( "You pressed CTRL + 1" );
         $("#tax").focus();
@@ -39,6 +40,9 @@ $(document).on('keydown', function ( e ) {
     }else  if ( (e.metaKey || e.ctrlKey) && ( String.fromCharCode(e.which) === '3' || String.fromCharCode(e.which) === '3' ) ) {
         console.log( "You pressed CTRL + 3" );
         $("#submitPage").click();
+    }else  if ( (e.metaKey || e.ctrlKey) && ( String.fromCharCode(e.which) === '0' || String.fromCharCode(e.which) === '0' ) ) {
+        console.log( "You pressed CTRL + 3" );
+        formSubmit();
     }
    });
 
@@ -50,7 +54,7 @@ $(".addmore").on('click',function(){
 	html += '<td><input class="case" type="checkbox"/></td>';
 	html += '<td><input type="text"  disabled="disabled" data-type="productCode" name="itemNo[]" id="itemNo_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
 	html += '<td><input type="text" style="text-align: center;color: black;"  tabindex="'+nextPointer++ +'" data-type="productName" name="itemName[]" id="itemName_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
-	html += '<td><input type="text" onfocus="this.select();" tabindex="'+nextPointer++ +'" name="price[]" id="price_'+i+'" style="text-align:center; background-color:black; font-stretch: wider;color: red;font-size-adjust: none;font-style: oblique;" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
+	html += '<td><input type="text" onfocus="this.select();" tabindex="'+nextPointer++ +'" name="price[]" id="price_'+i+'" style="text-align:center; background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
 	html += '<td><input type="text" onfocus="this.select();" tabindex="'+nextPointer++ +'" name="quantity[]" id="quantity_'+i+'" style="text-align:center;background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
 	html += '<td><input type="text" disabled="disabled" onfocus="this.select();" name="total[]" id="total_'+i+'" class="form-control totalLinePrice" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
 	html += '</tr>';
@@ -155,7 +159,8 @@ $(document).on('change keyup blur','#tax',function(){
 
 //total price calculation 
 function calculateTotal(){
-	subTotal = 0 ; total = 0; 
+	subTotal = 0 ; total = 0;
+	
 	$('.totalLinePrice').each(function(){
 		if($(this).val() != '' )subTotal += parseFloat( $(this).val() );
 	});
@@ -188,6 +193,7 @@ function calculateAmountDue(){
 		total = parseFloat(total).toFixed(2);
 		$('.amountDue').val( total);
 	}
+	changeText();
 }
 
 
@@ -213,21 +219,6 @@ $(function () {
 });
 
 var serverResponse = "";
-
-$('.alertClass').on('click', function () {
-	$.confirm({
-	    title: 'Thank You !!!',
-	    content: 'Prining is in Progress !!!.<br/> '+ serverResponse +" <br> <br> The Page will be refreshed in 5 Sec",
-	    autoClose: 'confirm|6000',
-	    keyboardEnabled: true,
-	    confirm: function(){
-	    	location.reload(true);
-	    },
-	    cancel:function(){
-	        //alert('canceled');
-	    }
-	});
-});
 
 $('.submitClass').on('click', function () {
 	$.confirm({
@@ -261,7 +252,19 @@ $('.submitClass').on('click', function () {
         {
                 //alert("Response from server: " + data);
 	    		serverResponse = data;
-                $(".alertClass").click();
+                
+                $.confirm({
+            	    title: 'Thank You !!!',
+            	    content: 'Prining is in Progress !!!.<br/> '+ serverResponse +"",
+            	    autoClose: 'confirm|6000',
+            	    keyboardEnabled: true,
+            	    confirm: function(){
+            	    	location.reload();
+            	    },
+            	    cancel:function(){
+            	        //alert('canceled');
+            	    }
+            	});
         });
 
 	    		  
@@ -273,9 +276,7 @@ $('.submitClass').on('click', function () {
 	    cancelButtonClass: 'btn-danger',
 	    theme: 'black',
 	    closeAnimation: 'rotatey',
-	    animationBounce: 2.5,
-	    animationSpeed: 2000,
-	    autoClose: 'cancel|6000',
+	    autoClose: 'cancel|4000',
 	    title: 'Alert',
 	    title: false
 	});

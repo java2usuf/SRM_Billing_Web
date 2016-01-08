@@ -9,7 +9,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,6 +33,9 @@ public class MainController {
 		ModelAndView model = new ModelAndView();
 		model.addObject("title", "login Page");
 		model.addObject("message", "This is default page!");
+		
+		
+		
 		model.setViewName("hello");
 		return model;
 
@@ -41,11 +43,8 @@ public class MainController {
 
 	@RequestMapping(value = "/admin**", method = RequestMethod.GET)
 	public ModelAndView adminPage() {
-
 		ModelAndView model = new ModelAndView();
-		
 		String totalTxn = transactionDao.totalTxn();
-		
 		model.addObject("title", "Spring Security Login Form - Database Authentication");
 		model.addObject("message", totalTxn);
 		model.setViewName("admin");
