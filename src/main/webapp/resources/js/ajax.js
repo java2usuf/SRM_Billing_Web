@@ -5,7 +5,9 @@ $(document).ready(function(){
 	$("#itemName_1").focus();
 });
 
-
+$(document).load(function(){
+	$("#itemName_1").focus();
+});
 
 /**
  * Site : http:www.smarttutorials.net
@@ -219,7 +221,7 @@ $('.alertClass').on('click', function () {
 	    autoClose: 'confirm|6000',
 	    keyboardEnabled: true,
 	    confirm: function(){
-	    	window.location = welcomeurl;
+	    	location.reload(true);
 	    },
 	    cancel:function(){
 	        //alert('canceled');

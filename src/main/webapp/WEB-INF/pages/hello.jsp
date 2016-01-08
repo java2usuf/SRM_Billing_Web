@@ -46,10 +46,10 @@
 		<form action="${saveUrl}" id="BillDetailsForm" method="post">
 					<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
-		
+		<!--  -->
     	<div class="row">
     		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    			<h1 class="text-center title">Billing Application</h1>
+    			<h1 class="text-center title">Safire Tex - Tirupattur</h1>
     		</div>
     	</div>
       	<div class="row">
@@ -73,10 +73,10 @@
 									<input disabled="disabled" type="text" autocomplete="off" class="form-control autocomplete_txt" id="itemNo_1" name="itemNo[]" 
 									data-type="productCode">
 								</td>
-								<td><input tabindex="1" style="" type="text" autocomplete="off" class="form-control autocomplete_txt" id="itemName_1" name="itemName[]" data-type="productName"></td>
+								<td><input tabindex="1" style="text-align: center;" type="text" autocomplete="off" class="form-control autocomplete_txt" id="itemName_1" name="itemName[]" data-type="productName"></td>
 								<td><input tabindex="2" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" 
 								style="text-align:center; background-color:black; font-stretch: wider;color: red;font-size-adjust: none;font-style: oblique;" onkeypress="return IsNumeric(event);"   autocomplete="off" class="form-control changesNo" id="price_1" name="price[]"></td>
-								<td><input tabindex="3" style="text-align:center;background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" onkeypress="return IsNumeric(event);" autocomplete="off" class="form-control changesNo" id="quantity_1" name="quantity[]"></td>
+								<td><input tabindex="3" style="text-align:center; background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" onkeypress="return IsNumeric(event);" autocomplete="off" class="form-control changesNo" id="quantity_1" name="quantity[]"></td>
 								<td><input disabled="disabled" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" onkeypress="return IsNumeric(event);" autocomplete="off" class="form-control totalLinePrice" id="total_1" name="total[]"></td>
 							</tr>
 						</tbody>
