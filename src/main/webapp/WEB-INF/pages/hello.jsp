@@ -103,10 +103,10 @@
       			</br></br>
       			<label style="font: bolder; font-size: 100px;color: gray;font-size-adjust: none;font-stretch: wider; padding-top: 60px;">&#8377; &nbsp;</label>
       			<label for="totalLabel" style="font: bolder; font-size: 100px;color: red;font-size-adjust: none;font-stretch: wider; padding-top: 60px;">0.0</label>
-      			</br>
+      			<!-- </br>
       			<label style="padding-left: 0px; font-size: 20px;color: gray;font-size-adjust: none;font-stretch: wider; padding-top: 60px;">TOTAL QTY :</label>
       			<label for="totalQTY" style="font: bolder; font-size: 20px;color: blue;font-size-adjust: none;font-stretch: wider; padding-top: 60px;">0</label>
-      			</br>
+      			</br> -->
       		</div>
 
       		<div class="col-lg-offset-1 col-lg-5">
