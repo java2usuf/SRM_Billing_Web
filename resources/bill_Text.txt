@@ -1,7 +1,7 @@
-		   
 		   SAFIRE TEX - Tirupattur
 		   
-		    Mobile : +91 94874 82376
+		    Mobile : +91 98434 45699
+Date :  #_DATE_TIME_#		    
 Bill No:  #_BILL_NO#      
 --------------------------------------------------
 Code|          Item Desc |   Price | QTY  | Total
