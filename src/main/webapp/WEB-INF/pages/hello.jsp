@@ -9,10 +9,7 @@
     <link href="<c:url value="/resources/css/font-awesome.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/jquery-confirm.min.css"/>" rel="stylesheet">
-    <link href="<c:url value="/resources/css/pace.index.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/sticky-footer-navbar.css"/>" rel="stylesheet">
-    
-    
     
 <html>
 <body>
@@ -174,10 +171,7 @@
     <script src="<c:url value="/resources/js/ajax.js"/>"></script>	
     <script src="<c:url value="/resources/js/enter2tab.js"/>"></script>
     <script src="<c:url value="/resources/js/jquery-confirm.min.js"/>"></script>
-    <script src="<c:url value="/resources/js/pace.min.js"/>"></script>
     <script src="<c:url value="/resources/js/ie.js"/>"></script>
-    
-	
 	    <script>
         $("fieldset").enableEnterToTab({ captureTabKey: true });
         //$("#totalAmountDiv").enableEnterToTab({ captureTabKey: true });

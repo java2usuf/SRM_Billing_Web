@@ -61,7 +61,7 @@ public class TransactionDaoImpl implements TransactionDao{
 
 	public String totalTxn() {
 		
-		String sql = "SELECT id,discountedAmount,subTotal,FinalAmount FROM TRANSACTION WHERE creation_time BETWEEN CURDATE()"+
+		String sql = "SELECT id,discountedAmount,subTotal,FinalAmount,creation_time FROM TRANSACTION WHERE creation_time BETWEEN CURDATE()"+
 						"AND DATE_ADD(CURDATE(), INTERVAL 1 day)";
 		Connection conn = null;
 		String resp = "";
@@ -84,12 +84,13 @@ public class TransactionDaoImpl implements TransactionDao{
 		        BigDecimal FinalDouble = new BigDecimal(FinalAmount);
 		        BigDecimal subTotalDouble = new BigDecimal(subTotal);
 		        
-		        System.out.println("-- Txn Details -- ");
+		        System.out.println("--  -- ");
 		        
-		        System.out.println("TX no"+ rs.getString("id"));
-		        System.out.println("-- Discount -- "+ discountDouble);
-		        System.out.println("-- Final Amount -- "+ FinalDouble);
-		        System.out.println("-- Sub Total -- "+ subTotalDouble);
+		        System.out.print("TX no"+ rs.getString("id"));
+		        System.out.print("-- Discount -- "+ discountDouble);
+		        System.out.print("-- Final Amount -- "+ FinalDouble);
+		        System.out.print("-- Sub Total -- "+ subTotalDouble);
+		        System.out.print("-- creation_time -- "+ rs.getString("creation_time"));
 		        
 		        totalDis = totalDis.add(discountDouble);
 		        totalFinal = totalFinal.add(FinalDouble);
