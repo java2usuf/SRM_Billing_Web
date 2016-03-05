@@ -45,12 +45,13 @@ public class MainController {
 	public ModelAndView adminPage() {
 		ModelAndView model = new ModelAndView();
 		String totalTxn = transactionDao.totalTxn();
+		List<Transaction> results = transactionDao.summaryReport();
 		model.addObject("title", "Spring Security Login Form - Database Authentication");
 		model.addObject("message", totalTxn);
+		model.addObject("results",results);
 		model.setViewName("admin");
 
 		return model;
-
 	}
 
 	@RequestMapping(value = {"/save/", "/save"}, method = { RequestMethod.GET, RequestMethod.POST })

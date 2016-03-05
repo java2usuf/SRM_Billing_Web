@@ -1,1 +1,0 @@
-#_ITEM_CODE_#  | #_ITEM_DESC_# | #_PRICE_#.00 | #_QUANTITY_# | #_FINALAMOUNT_#
