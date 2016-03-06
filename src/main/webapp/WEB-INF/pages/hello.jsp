@@ -68,21 +68,23 @@
 						<thead>
 							<tr>
 								<th width="2%"><input type="checkbox" class="formcontrol" id="check_all"></th>
-								<th width="15%">Item No</th>
-								<th width="38%">Item Name</th>
-								<th width="15%">Price</th>
-								<th width="15%">Quantity</th>
-								<th width="15%">Total</th>
+								<!-- <th width="15%">Item No</th> -->
+								<th width="38%" align="center">Name</th>
+								<th width="15%" align="center">Price</th>
+								<th width="15%" align="center">Quantity</th>
+								<th width="15%" align="center">Total</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td><input type="checkbox" class="case"></td>
-								<td>
-									<input disabled="disabled" type="text" autocomplete="off" class="form-control autocomplete_txt" id="itemNo_1" name="itemNo[]" 
-									data-type="productCode">
-								</td>
-								<td><input tabindex="1" style="text-align: center;" type="text" autocomplete="off" class="form-control autocomplete_txt" id="itemName_1" name="itemName[]" data-type="productName"></td>
+								<!-- <td>
+									
+								</td> -->
+								<input disabled="disabled"  type="hidden" autocomplete="off" class="form-control autocomplete_txt" id="itemNo_1" name="itemNo[]" 
+									data-type="productCode" value="34" >
+								<td><input tabindex="1" style="text-align: center;" type="text" autocomplete="off" class="form-control autocomplete_txt" 
+								id="itemName_1" name="itemName[]" data-type="productName" value="Item"></td>
 								<td><input tabindex="2" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" 
 								style="text-align:center; background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" onkeypress="return IsNumeric(event);"   autocomplete="off" class="form-control changesNo" id="price_1" name="price[]"></td>
 								<td><input tabindex="3" style="text-align:center; background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" onkeypress="return IsNumeric(event);" autocomplete="off" class="form-control changesNo" id="quantity_1" name="quantity[]"></td>

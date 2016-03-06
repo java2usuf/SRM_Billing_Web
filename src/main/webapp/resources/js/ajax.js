@@ -31,16 +31,16 @@ function changeText(){
 }
 
 $(document).on('keydown', function ( e ) {
-    if ( (e.metaKey || e.ctrlKey) && ( String.fromCharCode(e.which) === '1' || String.fromCharCode(e.which) === '1' ) ) {
+    if (( e.which==112)  ) {
         console.log( "You pressed CTRL + 1" );
         $("#tax").focus();
-    }else  if ( (e.metaKey || e.ctrlKey) && ( String.fromCharCode(e.which) === '2' || String.fromCharCode(e.which) === '2' ) ) {
+    }else  if (( e.which==113) ) {
         console.log( "You pressed CTRL + 2" );
         $("#mobileNo").focus();
-    }else  if ( (e.metaKey || e.ctrlKey) && ( String.fromCharCode(e.which) === '3' || String.fromCharCode(e.which) === '3' ) ) {
+    }else  if ( ( e.which==114)  ) {
         console.log( "You pressed CTRL + 3" );
         $("#submitPage").click();
-    }else  if ( (e.metaKey || e.ctrlKey) && ( String.fromCharCode(e.which) === '0' || String.fromCharCode(e.which) === '0' ) ) {
+    }else  if (( e.which==115) ) {
         console.log( "You pressed CTRL + 3" );
         formSubmit();
     }
@@ -52,8 +52,8 @@ var nextPointer = 4;
 $(".addmore").on('click',function(){
 	html = '<tr>';
 	html += '<td><input class="case" type="checkbox"/></td>';
-	html += '<td><input type="text"  disabled="disabled" data-type="productCode" name="itemNo[]" id="itemNo_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
-	html += '<td><input type="text" style="text-align: center;color: black;"  tabindex="'+nextPointer++ +'" data-type="productName" name="itemName[]" id="itemName_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
+	html += '<input type="hidden" value="34"  disabled="disabled" data-type="productCode" name="itemNo[]" id="itemNo_'+i+'" class="form-control autocomplete_txt" autocomplete="off">';
+	html += '<td><input type="text" value="Item" style="text-align: center;color: black;"  tabindex="'+nextPointer++ +'" data-type="productName" name="itemName[]" id="itemName_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
 	html += '<td><input type="text" onfocus="this.select();" tabindex="'+nextPointer++ +'" name="price[]" id="price_'+i+'" style="text-align:center; background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
 	html += '<td><input type="text" onfocus="this.select();" tabindex="'+nextPointer++ +'" name="quantity[]" id="quantity_'+i+'" style="text-align:center;background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
 	html += '<td><input type="text" disabled="disabled" onfocus="this.select();" name="total[]" id="total_'+i+'" class="form-control totalLinePrice" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
@@ -104,7 +104,8 @@ var prices = ["1|BABIES|",
               "28|GIFT BOX",
               "30|LUNGI",
               "32|TITES",
-              "33|ORNI"
+              "33|ORNI" +
+              "34|ITEM"
 ];
 
 //autocomplete script
@@ -276,7 +277,7 @@ $('.submitClass').on('click', function () {
 	    cancelButtonClass: 'btn-danger',
 	    theme: 'black',
 	    closeAnimation: 'rotatey',
-	    autoClose: 'cancel|4000',
+	    autoClose: 'confirm|1000',
 	    title: 'Alert',
 	    title: false
 	});

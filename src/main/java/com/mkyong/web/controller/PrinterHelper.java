@@ -52,8 +52,9 @@ public class PrinterHelper {
         p.newLine();
         p.addLineSeperator();
         p.newLine();
+        int counter = 1;
 		for(LineItem lineItem:lineList){
-			String temp=String.format("%2s", lineItem.getItemNumber()).replace(' ', '0')+"\t"+
+			String temp=String.format("%2s", counter++).replace(' ', '0')+"\t"+
 					String.format("%-10s", lineItem.getItemDesc())+"\t"+
 					String.format("%3s", quantity(lineItem.getQuantity())+"\t"+
 					String.format("%4s", lineItem.getPrice())+"\t"+
@@ -92,11 +93,23 @@ public class PrinterHelper {
 		p.alignCenter();
 		p.newLine();
 		p.newLine();
-		
+		p.setText("Bill Amount = \t" );
 		p.doubleStrik(true);
-		p.setText(txn.getTotalAfterDiscount());
+		p.doubleHeight(true);
+		p.setText(txn.getTotalAfterDiscount() +"/-");
 		p.doubleStrik(false);
-
+		p.doubleHeight(false);
+		int totalAmount = (int)Float.parseFloat(txn.getTotalAfterDiscount());
+		
+		if(totalAmount > 100){
+			p.newLine();
+			p.newLine();
+			
+			p.newLine();
+			p.doubleStrik(true);
+			p.setText("**** You WON "+ totalAmount /100 +" Points ****" );
+			p.doubleStrik(false);
+		}
 		
 		
 		p.feed((byte)2);
