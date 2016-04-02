@@ -1,2 +1,0 @@
-Discount % : #_DISCOUNT_PERCENT_#
-Discount Amount : #_DISCOUNT_AMOUNT_#
