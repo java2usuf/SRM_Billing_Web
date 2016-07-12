@@ -25,7 +25,7 @@ public class AppConfig  extends WebMvcConfigurerAdapter{
 	//test commit
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("login");
+        registry.addViewController("/").setViewName("login_page");
     }
 
     @Override

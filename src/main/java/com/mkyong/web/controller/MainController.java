@@ -27,32 +27,27 @@ public class MainController {
 	@Autowired
 	LineItemDao lineItemDao;
 
-	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
-	public ModelAndView defaultPage() {
-		
-		ModelAndView model = new ModelAndView();
-		model.addObject("title", "login Page");
-		model.addObject("message", "This is default page!");
-		
-		
-		
-		model.setViewName("hello");
-		return model;
-
-	}
-
-	@RequestMapping(value = "/admin**", method = RequestMethod.GET)
-	public ModelAndView adminPage() {
+	@RequestMapping(value = "/reports", method = RequestMethod.GET)
+	public ModelAndView adminPage2() {
 		ModelAndView model = new ModelAndView();
 		String totalTxn = transactionDao.totalTxn();
 		List<Transaction> results = transactionDao.summaryReport();
-		model.addObject("title", "Spring Security Login Form - Database Authentication");
+		model.addObject("title", "Daily Report");
 		model.addObject("message", totalTxn);
 		model.addObject("results",results);
 		model.setViewName("admin");
-
 		return model;
 	}
+
+
+	@RequestMapping(value = "/homepage", method = RequestMethod.GET)
+	public ModelAndView homepage() {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("home_page");
+		return model;
+	}
+
+
 
 	@RequestMapping(value = {"/save/", "/save"}, method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView save(
@@ -115,41 +110,23 @@ public class MainController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout) {
 
 		ModelAndView model = new ModelAndView();
 		if (error != null) {
 			model.addObject("error", "Invalid username and password!");
-		}
-
-		if (logout != null) {
+			model.setViewName("login_page");
+			return model;
+		}else if (logout != null) {
 			model.addObject("msg", "You've been logged out successfully.");
+			model.setViewName("login_page");
+			return model;
 		}
-		model.setViewName("login");
 
+		model.setViewName("login_page");
 		return model;
 
 	}
-	
-	//for 403 access denied page
-	@RequestMapping(value = "/403", method = RequestMethod.GET)
-	public ModelAndView accesssDenied() {
-
-		ModelAndView model = new ModelAndView();
-		
-		//check if user is login
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (!(auth instanceof AnonymousAuthenticationToken)) {
-			UserDetails userDetail = (UserDetails) auth.getPrincipal();
-			System.out.println(userDetail);
-			model.addObject("username", userDetail.getUsername());
-		}
-		
-		model.setViewName("403");
-		return model;
-
-	}
-
 }

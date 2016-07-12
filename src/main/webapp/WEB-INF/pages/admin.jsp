@@ -56,9 +56,15 @@
 		</c:forEach>
 		</tbody>
 				</table>
+
+		${message}
 	</c:if>
 
-Today Sales *** : ${message}
+<c:if test="${pageContext.request.userPrincipal.name == null}">
+
+	Click here : <a href="/login">Login Page</a>
+
+</c:if>
 
 </body>
 </html>

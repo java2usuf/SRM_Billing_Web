@@ -65,9 +65,7 @@ public class TransactionDaoImpl implements TransactionDao{
 
 	
 public List<Transaction> summaryReport() {
-		
-		String sql = "SELECT * FROM TRANSACTION";
-		
+		String sql = "SELECT * FROM TRANSACTION WHERE DATE(creation_time) = CURDATE()";
 		Connection conn = null;
 		String resp = "";
 		List<Transaction> completeResult = new ArrayList<Transaction>();
@@ -115,8 +113,7 @@ public List<Transaction> summaryReport() {
 	
 	public String totalTxn() {
 		
-		String sql = "SELECT id,discountedAmount,subTotal,FinalAmount,creation_time FROM TRANSACTION WHERE creation_time BETWEEN CURDATE()"+
-						"AND DATE_ADD(CURDATE(), INTERVAL 1 day)";
+		String sql = "SELECT id,discountedAmount,subTotal,FinalAmount,creation_time FROM TRANSACTION WHERE DATE(creation_time) = CURDATE()";
 		Connection conn = null;
 		String resp = "";
 		

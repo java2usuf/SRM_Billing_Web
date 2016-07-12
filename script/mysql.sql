@@ -15,13 +15,12 @@ CREATE TABLE user_roles (
   CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username));
 
 INSERT INTO users(username,password,enabled)
-VALUES ('mkyong','123456', true);
+VALUES ('st-admin','stadmin', true);
 INSERT INTO users(username,password,enabled)
-VALUES ('alex','123456', true);
+VALUES ('safire','123456', true);
+
 
 INSERT INTO user_roles (username, role)
-VALUES ('mkyong', 'ROLE_USER');
+VALUES ('st-admin', 'ROLE_ADMIN');
 INSERT INTO user_roles (username, role)
-VALUES ('mkyong', 'ROLE_ADMIN');
-INSERT INTO user_roles (username, role)
-VALUES ('alex', 'ROLE_USER');
+VALUES ('safire', 'ROLE_USER');
