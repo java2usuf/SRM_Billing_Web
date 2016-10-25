@@ -52,6 +52,7 @@
 			<div class="msg">${msg}</div>
 		</c:if>
 
+			<h1 class="text-center">Safire Billing App</h1>
 			<div class="form-header">
 				<i class="fa fa-user"></i>
 			</div>

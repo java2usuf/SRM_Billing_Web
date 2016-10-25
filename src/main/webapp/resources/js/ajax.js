@@ -1,10 +1,10 @@
 
 $(document).ready(function(){
-	$("#itemName_1").focus();
+	$("#price_1").focus();
 });
 
 $(document).load(function(){
-	$("#itemName_1").focus();
+	$("#price_1").focus();
 });
 
 /**
@@ -32,10 +32,13 @@ function changeText(){
 
 $(document).on('keydown', function ( e ) {
     if (( e.which==112)  ) {
-        console.log( "You pressed CTRL + 1" );
+        console.log( "You pressed CTRL + 1 00" );
+		$("#discountPercent_div").css("visibility","visible");
+		$("#disacountAmount_div").css("visibility","visible");
         $("#tax").focus();
     }else  if (( e.which==113) ) {
         console.log( "You pressed CTRL + 2" );
+		$("#custNumber_div").css("visibility","visible");
         $("#mobileNo").focus();
     }else  if ( ( e.which==114)  ) {
         console.log( "You pressed CTRL + 3" );
@@ -53,16 +56,32 @@ $(".addmore").on('click',function(){
 	html = '<tr>';
 	html += '<td><input class="case" type="checkbox"/></td>';
 	html += '<input type="hidden" value="34"  disabled="disabled" data-type="productCode" name="itemNo[]" id="itemNo_'+i+'" class="form-control autocomplete_txt" autocomplete="off">';
-	html += '<td><input type="text" value="Item" style="text-align: center;color: black;"  tabindex="'+nextPointer++ +'" data-type="productName" name="itemName[]" id="itemName_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
-	html += '<td><input type="text" onfocus="this.select();" tabindex="'+nextPointer++ +'" name="price[]" id="price_'+i+'" style="text-align:center; background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
-	html += '<td><input type="text" onfocus="this.select();" tabindex="'+nextPointer++ +'" name="quantity[]" id="quantity_'+i+'" style="text-align:center;background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
+	html += '<td><input type="text" disabled="disabled" value="Item '+i+'" style="text-align: center;color: black;"   data-type="productName" name="itemName[]" id="itemName_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
+	html += '<td><input type="text"  onfocus="this.select();" tabindex="'+nextPointer++ +'" name="price[]" id="price_'+i+'" style="text-align:center; background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
+	html += '<td><input type="text" value="1" onfocus="this.select();" tabindex="'+nextPointer++ +'" name="quantity[]" id="quantity_'+i+'" style="text-align:center;background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
 	html += '<td><input type="text" disabled="disabled" onfocus="this.select();" name="total[]" id="total_'+i+'" class="form-control totalLinePrice" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
 	html += '</tr>';
 	$('table').append(html);
+	console.log( $("#price_"+i).children().last());
+
 	i++;
 });
 
- 
+
+$(".add_return").on('click',function(){
+	html = '<tr style="background-color: #fdf59a">';
+	html += '<td><input class="case" type="checkbox"/></td>';
+	html += '<input type="hidden" value="34"  disabled="disabled" data-type="productCode" name="itemNo[]" id="itemNo_'+i+'" class="form-control autocomplete_txt" autocomplete="off">';
+	html += '<td><input type="text" disabled="disabled" value="Return Item '+i+'" style="text-align: center;color: black;"   data-type="productName" name="itemName[]" id="itemName_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
+	html += '<td><input type="text" onfocus="this.select();" tabindex="'+nextPointer++ +'" name="price[]" id="price_'+i+'" style="text-align:center; background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
+	html += '<td><input type="text" value="1" onfocus="this.select();" tabindex="'+nextPointer++ +'" name="quantity[]" id="quantity_'+i+'" style="text-align:center;background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
+	html += '<td><input type="text" txnType="return" disabled="disabled" onfocus="this.select();" name="total[]" id="total_'+i+'" class="form-control totalLinePrice" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
+	html += '</tr>';
+	$('table').append(html);
+	$("#price_"+i).focus();
+	i++;
+});
+
 
 //to check all checkboxes
 $(document).on('change','#check_all',function(){
@@ -112,8 +131,8 @@ var prices = ["1|BABIES|",
 $(document).on('focus','.autocomplete_txt',function(){
 	type = $(this).data('type');
 	
-	if(type =='productCode' )autoTypeNo=0;
-	if(type =='productName' )autoTypeNo=1; 	
+	if(type =='productCode')autoTypeNo=0;
+	if(type =='productName')autoTypeNo=1;
 	
 	$(this).autocomplete({
 		source: function( request, response ) {	 
@@ -163,7 +182,8 @@ function calculateTotal(){
 	subTotal = 0 ; total = 0;
 	
 	$('.totalLinePrice').each(function(){
-		if($(this).val() != '' )subTotal += parseFloat( $(this).val() );
+		if($(this).attr("txnType") == 'return') $(this).val(-Math.abs($(this).val()));
+		if($(this).val() != '')subTotal += parseFloat( $(this).val() );
 	});
 	$('#subTotal').val( subTotal.toFixed(2) );
 	tax = $('#tax').val();
@@ -257,7 +277,7 @@ $('.submitClass').on('click', function () {
                 $.confirm({
             	    title: 'Thank You !!!',
             	    content: 'Prining is in Progress !!!.<br/> '+ serverResponse +"",
-            	    autoClose: 'confirm|6000',
+            	    autoClose: 'confirm|2000',
             	    keyboardEnabled: true,
             	    confirm: function(){
             	    	location.reload();

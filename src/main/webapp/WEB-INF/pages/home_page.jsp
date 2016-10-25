@@ -23,7 +23,7 @@
 				$.confirm({
 				    title: 'Logging-out !!!',
 				    content: 'Do you really want to Log-out ?',
-				    autoClose: 'cancel|3000',
+				    autoClose: 'confirm|3000',
 				    keyboardEnabled: true,
 				    confirm: function(){
 				    	document.getElementById("logoutForm").submit();
@@ -51,9 +51,6 @@
 				value="${_csrf.token}" />
 		</form>
 
-			<a class="pure-button button-secondary" href="/report">
-				Report
-			</a>
     		<a class="pure-button button-secondary" href="javascript:formSubmit()">
 			    Logout
 			</a>
@@ -75,26 +72,28 @@
 							<tr>
 								<th width="2%"><input type="checkbox" class="formcontrol" id="check_all"></th>
 								<!-- <th width="15%">Item No</th> -->
-								<th width="38%" align="center">Name</th>
-								<th width="15%" align="center">Price</th>
-								<th width="15%" align="center">Quantity</th>
-								<th width="15%" align="center">Total</th>
+								<th width="38%" style="text-align: center">Name</th>
+								<th width="15%" style="text-align: center">Price</th>
+								<th width="15%" style="text-align: center">Quantity</th>
+								<th width="15%" style="text-align: center">Total</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<tr >
 								<td><input type="checkbox" class="case"></td>
 								<!-- <td>
 									
 								</td> -->
 								<input disabled="disabled"  type="hidden" autocomplete="off" class="form-control autocomplete_txt" id="itemNo_1" name="itemNo[]" 
 									data-type="productCode" value="34" >
-								<td><input tabindex="1" style="text-align: center;" type="text" autocomplete="off" class="form-control autocomplete_txt" 
+								<td><input tabindex="1" style="text-align: center;" type="text" autocomplete="off" class="form-control autocomplete_txt" disabled="disabled"
 								id="itemName_1" name="itemName[]" data-type="productName" value="Item"></td>
 								<td><input tabindex="2" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" 
 								style="text-align:center; background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" onkeypress="return IsNumeric(event);"   autocomplete="off" class="form-control changesNo" id="price_1" name="price[]"></td>
-								<td><input tabindex="3" style="text-align:center; background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" onkeypress="return IsNumeric(event);" autocomplete="off" class="form-control changesNo" id="quantity_1" name="quantity[]"></td>
-								<td><input disabled="disabled" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" onkeypress="return IsNumeric(event);" autocomplete="off" class="form-control totalLinePrice" id="total_1" name="total[]"></td>
+								<td><input tabindex="3"  value="1" style="text-align:center; background-color:black; font-stretch: wider;color: yellow;font-size-adjust: none;font-style: oblique;" onfocus="this.select();" type="number" onpaste="return false;" ondrop="return false;" onkeypress="return IsNumeric(event);" autocomplete="off" class="form-control changesNo" id="quantity_1" name="quantity[]"></td>
+								<td><input disabled="disabled" onfocus="this.select();"
+										   type="number" onpaste="return false;" ondrop="return false;" onkeypress="return IsNumeric(event);" autocomplete="off"
+										   class="form-control totalLinePrice" id="total_1" name="total[]"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -103,8 +102,9 @@
       	</div>
       	<div class="row" id="totalAmountDiv">
       		<div class="col-lg-6">
-      			<button type="button" class="btn btn-danger delete">- Delete</button>
-      			<button type="button" id="addbut" class="btn btn-success addmore">+ Add More</button>
+      			<button type="button" class="btn btn-danger delete">- Delete</button> &nbsp;&nbsp;&nbsp;
+      			<button type="button" id="addbut" style="visibility: hidden" class="btn btn-success addmore">+ Add More</button>
+				<button type="button" class="btn btn-primary add_return">+ Return</button>
       			</br></br>
       			<label style="font: bolder; font-size: 100px;color: gray;font-size-adjust: none;font-stretch: wider; padding-top: 60px;">&#8377; &nbsp;</label>
       			<label for="totalLabel" style="font: bolder; font-size: 100px;color: red;font-size-adjust: none;font-stretch: wider; padding-top: 60px;">0.0</label>
@@ -112,7 +112,7 @@
 
       		<div class="col-lg-offset-1 col-lg-5">
 				<fieldset class="form-inline">
-					<div class="form-group">
+					<div class="form-group" style="visibility: hidden" id="custNumber_div">
 						<label>Customer Mobile Number: &nbsp;</label>
 						<div class="input-group">
 							<div class="input-group-addon">&#8377;</div>
@@ -129,7 +129,7 @@
 							placeholder="Subtotal" id="subTotal" class="form-control">
 						</div>
 					</div>
-					<div class="form-group">
+					<div style="visibility: hidden" class="form-group" id="discountPercent_div">
 						<label> %: &nbsp;</label>
 						<div class="input-group">
 							<div class="input-group-addon">&#8377;</div>
@@ -137,10 +137,10 @@
 							 id="tax" class="form-control">
 						</div>
 					</div>
-					<div class="form-group">
+					<div style="visibility: hidden" class="form-group" id="disacountAmount_div">
 						<label>DA : &nbsp;</label>
 						<div class="input-group">
-							<input type="number"  onpaste="return false;" ondrop="return false;" disabled="disabled" onkeypress="return IsNumeric(event);" name="disacountAmount"
+							<input type="number"  onpaste="return false;" ondrop="return false;" disabled="disabled"  onkeypress="return IsNumeric(event);" name="disacountAmount"
 							placeholder="" id="taxAmount" class="form-control">
 							<div class="input-group-addon">%</div>
 						</div>
