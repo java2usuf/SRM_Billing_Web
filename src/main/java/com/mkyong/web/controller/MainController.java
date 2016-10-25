@@ -1,13 +1,15 @@
 package com.mkyong.web.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.database.*;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +21,9 @@ import com.mkyong.web.dao.TransactionDao;
 import com.mkyong.web.model.LineItem;
 import com.mkyong.web.model.Transaction;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class MainController {
 	
@@ -26,28 +31,45 @@ public class MainController {
 	TransactionDao transactionDao;
 	@Autowired
 	LineItemDao lineItemDao;
+	@Autowired
+	ServletContext context;
 
-	@RequestMapping(value = "/reports", method = RequestMethod.GET)
-	public ModelAndView adminPage2() {
+	static boolean fireBaseInitilized;
+
+	@RequestMapping(value = "/report", method = RequestMethod.GET)
+	public ModelAndView adminPage2(@RequestParam(value = "dateSelected", required = false) String selectedDate) {
 		ModelAndView model = new ModelAndView();
-		String totalTxn = transactionDao.totalTxn();
-		List<Transaction> results = transactionDao.summaryReport();
+		String totalTxn = transactionDao.totalTxn(selectedDate);
+		List<Transaction> results = transactionDao.summaryReport(selectedDate);
 		model.addObject("title", "Daily Report");
 		model.addObject("message", totalTxn);
 		model.addObject("results",results);
-		model.setViewName("admin");
+		model.setViewName("daily_reports");
 		return model;
 	}
 
 
 	@RequestMapping(value = "/homepage", method = RequestMethod.GET)
-	public ModelAndView homepage() {
+	public ModelAndView homepage(HttpServletRequest request) {
 		ModelAndView model = new ModelAndView();
+		if (request.isUserInRole("ROLE_ADMIN")) {
+			model.setViewName("admin_page");
+			return model;
+		}
+
+
 		model.setViewName("home_page");
 		return model;
 	}
 
 
+
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public ModelAndView homepage() {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("admin_page");
+		return model;
+	}
 
 	@RequestMapping(value = {"/save/", "/save"}, method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView save(
@@ -61,15 +83,25 @@ public class MainController {
 			@RequestParam(value = "discountPercent", required = false) String discountPercent,
 			@RequestParam(value = "totalAfterAmount", required = false) String totalAfterAmount,
 			@RequestParam(value = "mobile", required = false) String mobile) {
-		
+
+
+
+			if(!fireBaseInitilized){
+				FirebaseOptions options = new FirebaseOptions.Builder()
+						.setServiceAccount(context.getResourceAsStream("/WEB-INF/serviceAccountCredentials_billpodu_web.json"))
+						.setDatabaseUrl("https://test-5112e.firebaseio.com/")
+						.build();
+				FirebaseApp.initializeApp(options);
+				System.out.println("***************** FIREBASE - Configured *****************");
+				fireBaseInitilized = true;
+			}
+
 		String[] ItemNoArray = itemNo.split("\\s*,\\s*");
 		String[] ItemNameArray = itemName.split("\\s*,\\s*"); 
 		String[] priceArray = price.split("\\s*,\\s*"); 
 		String[] quantityArray = quantity.split("\\s*,\\s*"); 
 		String[] totalArray = total.split("\\s*,\\s*");
-		
-		
-		
+
 		int counter = 0;
 		Transaction txn = new Transaction();
 		txn.setDiscountedAmount(disacountAmount);
@@ -101,7 +133,30 @@ public class MainController {
 			}
 			counter ++;
 		}
-		
+
+
+		DatabaseReference ref = FirebaseDatabase
+				.getInstance()
+				.getReference("stores/safire/transactions");
+
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("TXN_VALUE",txn);
+		map.put("LINE_ITEMS",lineObjcts);
+
+		ref.push().setValue(map, new DatabaseReference.CompletionListener() {
+			@Override
+			public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+				if (databaseError != null) {
+					System.out.println("Data could not be saved " + databaseError.getMessage());
+				} else {
+					System.out.println("Data saved successfully.");
+				}
+			}
+		});
+
+		ref.push();
+
+
 		new PrinterHelper().mappingTheData(txn, lineObjcts);
 		
 		ModelAndView model = new ModelAndView();
@@ -113,6 +168,9 @@ public class MainController {
 	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout) {
+
+// As an admin, the app has access to read and write all data, regardless of Security Rules
+
 
 		ModelAndView model = new ModelAndView();
 		if (error != null) {
